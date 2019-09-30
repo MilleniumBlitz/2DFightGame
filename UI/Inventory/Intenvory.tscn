@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/Inventory/Assets/inventory.png" type="Texture" id=1]
+[ext_resource path="res://UI/Inventory/Intenvory.gd" type="Script" id=2]
+[ext_resource path="res://UI/Inventory/InventorySpace.tscn" type="PackedScene" id=3]
+
+[node name="Intenvory" type="Sprite"]
+position = Vector2( 16, -12 )
+scale = Vector2( 1.04348, 0.935065 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="InventorySpace0" parent="." instance=ExtResource( 3 )]
+
+[node name="InventorySpace1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -16, 6.5 )
+
+[node name="InventorySpace2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 6.5 )
+
+[node name="InventorySpace3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -32, 22.5 )
+
+[node name="InventorySpace4" parent="." instance=ExtResource( 3 )]
+position = Vector2( -16, 22.5 )
+
+[node name="InventorySpace5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 22.5 )

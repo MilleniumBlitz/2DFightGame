@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Levels/1/Level1.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Teleporter/Teleporter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprite/Tileset/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Sign/Sign.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/HealthBar/Assets/progressbar-under.png" type="Texture" id=6]
+[ext_resource path="res://Objects/Turret/Turret.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entities/Enemy/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprite/Tileset/sheet.png" type="Texture" id=9]
+
+[sub_resource type="TileSet" id=1]
+0/name = "sheet.png 0"
+0/texture = ExtResource( 9 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 160, 0, 48, 32 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 260, Vector2( 0, 1 ), 4, Vector2( 1, 0 ), 325, Vector2( 1, 1 ), 5, Vector2( 2, 0 ), 65, Vector2( 2, 1 ), 1 ]
+0/autotile/icon_coordinate = Vector2( 1, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 1 )
+default_spawn = NodePath("Spawn")
+level_color = Color( 0.831373, 0.101961, 0.101961, 1 )
+
+[node name="Teleporter" parent="." instance=ExtResource( 2 )]
+position = Vector2( 89.0295, 281.006 )
+direction = "res://Levels/2/Level2.tscn"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 196612, 1073741830, 0, 196613, -2147483642, 0, 196614, -2147483642, 0, 196615, -2147483642, 0, 196616, -2147483642, 0, 196617, -2147483642, 0, 196618, -2147483642, 0, 196619, -2147483642, 0, 196620, -2147483642, 0, 196621, -2147483642, 0, 196622, -2147483642, 0, 196623, -2147483642, 0, 196624, -2147483642, 0, 262147, 10, 0, 262148, 12, 0, 327683, 10, 0, 327684, 12, 0, 393219, 10, 0, 393220, 12, 0, 393224, 0, 0, 393225, 536870913, 0, 393226, 536870913, 0, 393227, 536870913, 0, 393228, 536870913, 0, 393229, 536870913, 0, 393230, 536870913, 0, 393231, 2, 0, 458755, 10, 0, 458756, 12, 0, 524291, 10, 0, 524292, 12, 0, 589827, 10, 0, 589828, 12, 0, 655363, 10, 0, 655364, 12, 0, 720899, 10, 0, 720900, 9, 0, 720901, 4, 0, 720902, 4, 0, 720903, 4, 0, 720904, 5, 0, 786435, -1073741821, 0, 786436, -1073741814, 0, 786437, -1073741814, 0, 786438, -1073741814, 0, 786439, -1073741814, 0, 786440, 1073741829, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 917515, -1073741814, 0, 917516, -1073741814, 0, 917517, -1073741814, 0, 917518, -1073741814, 0, 917519, -1073741814, 0, 917520, -1073741814, 0, 917521, -1073741814, 0, 917522, -1073741814, 0, 917523, -1073741814, 0, 917524, -1073741814, 0, 917525, -1073741814, 0, 917526, -1073741814, 0, 917531, 7, 0, 983067, 1073741830, 0, 1048601, 4, 0, 1048602, 4, 0, 1048603, 1073741830, 0, 1114139, 1073741830, 0, 1179675, 1073741830, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 4, 0, 1310741, 0, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 225.66, 276.428 )
+
+[node name="Sign" parent="." instance=ExtResource( 5 )]
+position = Vector2( 304.665, 193.492 )
+message = "Hello"
+
+[node name="Sign2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 358.361, 195.252 )
+message = "Coucou"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+
+[node name="Turret" parent="." instance=ExtResource( 7 )]
+position = Vector2( 301.935, 289.516 )
+fire_rate = 2.0
+
+[node name="Enemy" parent="." instance=ExtResource( 8 )]
+position = Vector2( 208.395, 176.046 )
+
+[node name="Spawn" type="Position2D" parent="."]
+position = Vector2( 176, 288 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 1769491, 0, 1, 1835026, 0, 1, 1835027, 0, 1, 1900562, 0, 0, 1900563, 0, 1, 1900564, 0, 1, 1966097, 0, 1, 1966098, 0, 1, 1966099, 0, 1, 1966100, 0, 1, 1966101, 0, 1, 1966102, 0, 1, 1966103, 0, 1, 1966104, 0, 1, 2031631, 0, 1, 2031632, 0, 1, 2031633, 0, 1, 2031634, 0, 1, 2031635, 0, 1, 2031636, 0, 1, 2031637, 0, 1, 2031638, 0, 1, 2031639, 0, 1, 2031640, 0, 1, 2031641, 0, 1, 2031642, 0, 1, 2031643, 0, 1, 2031644, 0, 1, 2031645, 0, 1, 2097163, 0, 1, 2097164, 0, 1, 2097165, 0, 1, 2097166, 0, 1, 2097167, 0, 1, 2097168, 0, 1, 2097169, 0, 1, 2097170, 0, 1, 2097171, 0, 1, 2097172, 0, 65537, 2097173, 0, 65537, 2097174, 0, 65537, 2097175, 0, 65537, 2097176, 0, 65537, 2097177, 0, 65537, 2097178, 0, 65537, 2097179, 0, 65537, 2097180, 0, 65537, 2097181, 0, 65538, 2162698, 0, 1, 2162699, 0, 1, 2162700, 0, 1, 2162701, 0, 1, 2162702, 0, 1, 2162703, 0, 65537, 2162704, 0, 1, 2162705, 0, 1, 2162706, 0, 65537, 2162707, 0, 65538, 2228234, 0, 0, 2228235, 0, 1, 2228236, 0, 1, 2228237, 0, 1, 2228238, 0, 2, 2228240, 0, 65536, 2228241, 0, 65538, 2293767, 0, 1, 2293768, 0, 1, 2293769, 0, 1, 2293770, 0, 1, 2293771, 0, 1, 2293772, 0, 65537, 2293773, 0, 65537, 2293774, 0, 65538, 2293775, 0, 1, 2359303, 0, 65536, 2359304, 0, 65537, 2359305, 0, 65537, 2359306, 0, 65537, 2359307, 0, 65538, 2359309, 0, 1 )

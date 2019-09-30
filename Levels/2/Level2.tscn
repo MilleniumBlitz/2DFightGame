@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Levels/2/Level2.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/Tileset/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Objects/Teleporter/Teleporter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Utils/light.png" type="Texture" id=4]
+
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 1 )
+default_spawn = NodePath("Spawn")
+level_color = Color( 0.886275, 0.854902, 0.0745098, 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 131082, 7, 0, 196618, 6, 0, 262147, 0, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 393219, 8, 0, 458766, 9, 0, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 1, 0, 458772, 1, 0, 458773, 2, 0, 524309, 6, 0, 589845, 6, 0, 655381, 6, 0, 720917, 6, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0 )
+
+[node name="Spawn" type="Position2D" parent="."]
+position = Vector2( 64, 48 )
+
+[node name="Teleporter" parent="." instance=ExtResource( 3 )]
+position = Vector2( 396.624, 157.245 )
+direction = "res://Levels/1/Level1.tscn"
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+texture = ExtResource( 4 )
