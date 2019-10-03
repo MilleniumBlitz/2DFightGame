@@ -20,7 +20,6 @@ func _set_health(value):
 	var prev_health = health
 	health = clamp(value, 0, max_health)
 	if health != prev_health:
-		print(health)
 		emit_signal("health_updated", health)
 		if health == 0:
 			kill()

@@ -1,1 +1,1 @@
-extends "res://Levels/level.gd"
+extends BaseLevel

@@ -3,13 +3,12 @@
 [ext_resource path="res://Objects/Sign/Sign.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Sign/Assets/sign.png" type="Texture" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "LabelShow"
 length = 2.0
 step = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sign:position")
+tracks/0/path = NodePath("Area2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -21,7 +20,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -15 ), Vector2( 0, 5 ), Vector2( 0, -5 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sign:rotation_degrees")
+tracks/1/path = NodePath("Area2D:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,19 +35,21 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
 
-[node name="Sign" type="Node2D"]
-position = Vector2( 342.398, 160.675 )
+[node name="Sign" type="Node2D" groups=[
+"UsableObject",
+]]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/LabelShow = SubResource( 1 )
 
-[node name="Sign" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="Sign"]
+[node name="Sprite" type="Sprite" parent="Area2D"]
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -58,5 +59,3 @@ margin_top = -27.7388
 margin_right = 110.145
 margin_bottom = -13.7388
 text = "Voici le texte affiché"
-[connection signal="body_entered" from="Sign" to="." method="_on_Sign_body_entered"]
-[connection signal="body_exited" from="Sign" to="." method="_on_Sign_body_exited"]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/2/Level2.gd" type="Script" id=1]
 [ext_resource path="res://Sprite/Tileset/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Objects/Teleporter/Teleporter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Utils/light.png" type="Texture" id=4]
-
+[ext_resource path="res://Entities/Enemy/Enemy.tscn" type="PackedScene" id=5]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,3 +27,6 @@ direction = "res://Levels/1/Level1.tscn"
 [node name="Light2D" type="Light2D" parent="."]
 visible = false
 texture = ExtResource( 4 )
+
+[node name="Enemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 336, 96 )
