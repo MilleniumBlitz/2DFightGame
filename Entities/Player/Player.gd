@@ -1,6 +1,6 @@
-extends KinematicBody2D
+extends Character
 
-signal health_updated()
+class_name Player
 
 const crouch_colision_size = Vector2(10,11)
 const crouch_colision_position = Vector2(0,7)
@@ -17,18 +17,12 @@ var is_crouched = false
 
 var motion = Vector2()
 const UP = Vector2(0, -1)
-const GRAVITY = 10
-const JUMP_HEIGHT = -250
-const ACCELERATION = 130
+const GRAVITY = 400
+const JUMP_HEIGHT = -230
+const ACCELERATION = 100
 const MAX_SPEED = 170
 
-onready var max_health = 100 
-onready var health = max_health setget _set_health
-
 var object_to_use = null
-
-func _ready():
-	connect("health_updated", $HealthBar, "_set_value")
 
 func _physics_process(delta):
 	$StateMachine._state_logic(delta)
@@ -48,32 +42,34 @@ func _handle_move_input():
 	
 	is_crouched = Input.is_action_pressed("ui_down")
 
+func get_facing_direction() -> Vector2:
+    return Vector2.LEFT if $Sprite.flip_h else Vector2.RIGHT
+
 func _apply_gravity(delta):
-		motion.y += GRAVITY
+	motion.y += GRAVITY * delta
 
 func _apply_movement():
-	motion = move_and_slide(motion, UP)
+	if !is_crouched:
+		motion = move_and_slide(motion, UP)
 
 func _get_h_weight():
-	return 0.2 if _check_is_grounded() else 0.1
-	
-func hit(damage):
-	_set_health(health - damage)
+	return 0.8 if _check_is_grounded() else 0.8
 
-func _set_health(value):
-	var prev_health = health
-	health = clamp(value, 0, max_health)
-	if health != prev_health:
-		emit_signal("health_updated", health)
-		if health == 0:
-			kill()
+func get_shooting_position():
+	return $ArrowPoint.global_position
 
-func kill():
-#	$Sprite.tint
+func _kill():
+	$Sprite.modulate = Color(255,1,1)
 	pass
 
+func toggle_inventory():
+	$Intenvory.set_visible(!$Intenvory.is_visible())
+
 func _check_is_grounded():
-	return is_on_floor()
+	for raycast in $Raycasts.get_children():
+		if raycast.is_colliding():
+			return true
+	return false
 
 func on_object_in_range(object):
 	object_to_use = object

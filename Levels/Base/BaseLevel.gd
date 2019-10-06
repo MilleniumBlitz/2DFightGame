@@ -2,19 +2,24 @@ extends Node
 
 class_name BaseLevel
 
-export(NodePath) var default_spawn
 export(Color) var level_color
 
 func _enter_tree():
-	
-	add_child(GLOBAL.player)
-	
+
 	if has_node("Light2D"):
 		var light = find_node("Light2D")
 		light.color = level_color
+		
+	GLOBAL.player.position = $DefaultSpawn.position
+	add_child(GLOBAL.player)
+#	$Player.call_deferred("replace_by", GLOBAL.player)
+#	$Player.replace_by(GLOBAL.player)
 	
-	var spawn_point = find_node(default_spawn)
-	GLOBAL.player.position = spawn_point.position
+#	if has_node("Player"):
+#		GLOBAL.player = $Player
+#	else:
+#		add_child(GLOBAL.player)
+		
 
 func _ready():
 	

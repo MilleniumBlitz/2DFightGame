@@ -4,8 +4,6 @@ const levels_prefix = "Level"
 
 var saved_levels = {}
 
-#var level = preload("res://Levels/level.gd")
-
 var player
 
 var start_level = 1

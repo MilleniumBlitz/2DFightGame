@@ -6,13 +6,14 @@ func _ready():
 	add_state("jump")
 	add_state("fall")
 	add_state("crouch")
+	add_state("dead")
 	call_deferred("set_state", states.idle)
 	
 func _input(event):
 	
 	#JUMP
 	if [states.idle, states.run].has(state):
-		if event.is_action_pressed("ui_up"):
+		if event.is_action_pressed("jump"):
 			parent.motion.y = parent.JUMP_HEIGHT
 
 	#USE (Chest, Sign ...)
@@ -21,19 +22,21 @@ func _input(event):
 			parent.object_to_use._use()
 			
 	#SHOOT
-	if event.is_action_pressed("shoot"):
-		var arrow_instance = GLOBAL._get_new_arrow($ArrowPoint.global_position, 5)
-		arrow_instance.direction = sign($ArrowPoint.position.x)
+	if event.is_action_pressed("shoot") && !event.is_echo():
+		var arrow_instance = GLOBAL._get_new_arrow(parent.get_shooting_position(), 5)
+		arrow_instance.direction = sign(parent.get_facing_direction().x)
 		get_tree().get_root().add_child(arrow_instance)
 	
 	#INVENTORY
-	if Input.is_action_pressed("toggle_inventory"):
-		$Intenvory._toggle()
+	if event.is_action_pressed("toggle_inventory"):
+		var toto : Player = parent
+		parent.toggle_inventory()
 	
 func _state_logic(delta):
+	parent._handle_move_input()
 	parent._apply_movement()
 	parent._apply_gravity(delta)
-	parent._handle_move_input()
+	
 	
 func _get_transition(delta):
 	match state:
@@ -43,7 +46,7 @@ func _get_transition(delta):
 					return states.jump
 				else:
 					return states.fall
-			elif int(parent.motion.x) != 0:
+			elif !Tools.is_equal(parent.motion.x,0):
 				return states.run
 			elif parent.is_crouched:
 				return states.crouch
@@ -53,7 +56,7 @@ func _get_transition(delta):
 					return states.jump
 				else:
 					return states.fall
-			elif int(parent.motion.x) == 0:
+			elif Tools.is_equal(parent.motion.x,0):
 				return states.idle
 		states.jump:
 			if parent._check_is_grounded():

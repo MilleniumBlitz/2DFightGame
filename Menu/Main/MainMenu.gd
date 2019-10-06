@@ -1,7 +1,7 @@
 extends Control
 
 func _input(event):
-	 if event is InputEventKey and event.scancode == KEY_SPACE:
+	 if event.is_action_pressed("jump"):
         play_game()
 
 func _on_PlayButton_pressed():
