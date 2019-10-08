@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Entities/Npc/Base/BaseNPC.gd" type="Script" id=1]
+
+[node name="BaseNPC" type="Node2D" groups=[
+"UsableObject",
+]]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

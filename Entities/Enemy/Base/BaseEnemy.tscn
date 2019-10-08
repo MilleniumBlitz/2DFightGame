@@ -11,6 +11,7 @@ extents = Vector2( 15, 15 )
 
 [node name="Enemy" type="KinematicBody2D" parent="."]
 script = ExtResource( 1 )
+experience = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource( 1 )

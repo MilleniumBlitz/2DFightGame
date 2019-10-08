@@ -38,6 +38,7 @@ extents = Vector2( 8, 8 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Torch" type="Sprite" parent="."]
+visible = false
 texture = SubResource( 1 )
 region_rect = Rect2( 127.339, 0, 16, 16 )
 __meta__ = {
@@ -46,10 +47,9 @@ __meta__ = {
 
 [node name="Ground01" type="Sprite" parent="."]
 editor/display_folded = true
-visible = false
 texture = ExtResource( 10 )
 region_enabled = true
-region_rect = Rect2( 128, 0, 16, 16 )
+region_rect = Rect2( 176, 32, 16, 16 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -87,7 +87,6 @@ __meta__ = {
 }
 
 [node name="Area2D" type="StaticBody2D" parent="Ground03"]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground03/Area2D"]
 shape = SubResource( 2 )
@@ -172,6 +171,22 @@ editor/display_folded = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground08/Area2D"]
 shape = SubResource( 2 )
 
+[node name="Ground09" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 128, 32, 16, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="StaticBody2D" parent="Ground09"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground09/Area2D"]
+shape = SubResource( 2 )
+one_way_collision = true
+
 [node name="Wall00" type="Sprite" parent="."]
 editor/display_folded = true
 visible = false
@@ -204,7 +219,7 @@ editor/display_folded = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall01/Area2D"]
 shape = SubResource( 2 )
 
-[node name="Wall023" type="Sprite" parent="."]
+[node name="Wall02" type="Sprite" parent="."]
 editor/display_folded = true
 visible = false
 texture = ExtResource( 10 )
@@ -214,13 +229,13 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="StaticBody2D" parent="Wall023"]
+[node name="Area2D" type="StaticBody2D" parent="Wall02"]
 editor/display_folded = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall023/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall02/Area2D"]
 shape = SubResource( 2 )
 
-[node name="Background00" type="Sprite" parent="."]
+[node name="Plateform" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 10 )
 region_enabled = true

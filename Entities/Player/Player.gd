@@ -5,15 +5,12 @@ class_name Player
 const crouch_colision_size = Vector2(10,11)
 const crouch_colision_position = Vector2(0,7)
 
-const SPRITE_IDLE = "Idle"
-const SPRITE_CROUCH = "Crouch"
-const SPRITE_JUMP = "Jump"
-const SPRITE_FALL = "Fall"
-const SPRTIE_RUN = "Run"
-
 onready var anim_player = $Sprite
 
 var is_crouched = false
+
+var experience = 0 setget _set_experience
+var level = 1
 
 var motion = Vector2()
 const UP = Vector2(0, -1)
@@ -21,6 +18,10 @@ const GRAVITY = 400
 const JUMP_HEIGHT = -230
 const ACCELERATION = 100
 const MAX_SPEED = 170
+
+func _set_experience(value):
+	experience = value
+	$Label.text = str(experience)
 
 var object_to_use = null
 

@@ -11,7 +11,6 @@ func _ready():
 		var area = get_node("Area2D")
 		area.connect("body_entered", self, "_on_Area2D_body_entered")
 		area.connect("body_exited", self, "_on_Area2D_body_exited")
-	pass
 
 func _on_Area2D_body_entered(body):
 	if body.name == GLOBAL.player.name:

@@ -1,5 +1,7 @@
 extends StateMachine
 
+signal interact
+
 func _ready():
 	add_state("idle")
 	add_state("run")
@@ -42,6 +44,7 @@ func _get_transition(delta):
 	match state:
 		states.idle:
 			if !parent._check_is_grounded():
+				print("not grounded")
 				if parent.motion.y < 0:
 					return states.jump
 				else:
