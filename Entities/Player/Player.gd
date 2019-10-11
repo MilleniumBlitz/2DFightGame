@@ -16,7 +16,7 @@ var motion = Vector2()
 const UP = Vector2(0, -1)
 const GRAVITY = 400
 const JUMP_HEIGHT = -230
-const ACCELERATION = 100
+const ACCELERATION = 4000
 const MAX_SPEED = 170
 
 func _set_experience(value):
@@ -28,7 +28,7 @@ var object_to_use = null
 func _physics_process(delta):
 	$StateMachine._state_logic(delta)
 
-func _handle_move_input():
+func _handle_move_input(delta):
 	
 	var move_direction = -int(Input.is_action_pressed("ui_left")) + int(Input.is_action_pressed("ui_right"))
 	if move_direction != 0:
@@ -39,7 +39,7 @@ func _handle_move_input():
 			
 		$Sprite.flip_h = move_direction < 0
 		
-	motion.x = lerp(motion.x, ACCELERATION * move_direction, _get_h_weight())
+	motion.x = lerp(motion.x, ACCELERATION * delta * move_direction, _get_h_weight())
 	
 	is_crouched = Input.is_action_pressed("ui_down")
 

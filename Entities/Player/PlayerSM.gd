@@ -35,7 +35,7 @@ func _input(event):
 		parent.toggle_inventory()
 	
 func _state_logic(delta):
-	parent._handle_move_input()
+	parent._handle_move_input(delta)
 	parent._apply_movement()
 	parent._apply_gravity(delta)
 	
