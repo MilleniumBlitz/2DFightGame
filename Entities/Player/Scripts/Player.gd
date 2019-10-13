@@ -6,7 +6,8 @@ export(float) var fire_rate = 0.4
 
 # const crouch_colision_size = Vector2(10,11)
 # const crouch_colision_position = Vector2(0,7)
-onready var anim_player = $Sprite
+onready var sprite = $Sprite
+onready var anim_player = $AnimationPlayer
 
 var is_crouched = false
 
