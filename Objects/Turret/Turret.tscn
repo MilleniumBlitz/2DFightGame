@@ -19,4 +19,4 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
 [node name="ShootingPoint" type="Position2D" parent="Turret"]
-position = Vector2( -15, 0 )
+position = Vector2( -20, 0 )

@@ -2,22 +2,23 @@ extends Character
 
 class_name Player
 
-const crouch_colision_size = Vector2(10,11)
-const crouch_colision_position = Vector2(0,7)
+export(float) var fire_rate = 0.4
 
+# const crouch_colision_size = Vector2(10,11)
+# const crouch_colision_position = Vector2(0,7)
 onready var anim_player = $Sprite
 
 var is_crouched = false
 
 var experience = 0 setget _set_experience
-var level = 1
+# var level = 1
 
 var motion = Vector2()
 const UP = Vector2(0, -1)
 const GRAVITY = 400
 const JUMP_HEIGHT = -230
 const ACCELERATION = 4000
-const MAX_SPEED = 170
+# const MAX_SPEED = 170
 
 func _set_experience(value):
 	experience = value
@@ -25,11 +26,8 @@ func _set_experience(value):
 
 var object_to_use = null
 
-func _physics_process(delta):
-	$StateMachine._state_logic(delta)
-
 func _handle_move_input(delta):
-	
+
 	var move_direction = -int(Input.is_action_pressed("ui_left")) + int(Input.is_action_pressed("ui_right"))
 	if move_direction != 0:
 		
@@ -43,7 +41,7 @@ func _handle_move_input(delta):
 	
 	is_crouched = Input.is_action_pressed("ui_down")
 
-func get_facing_direction() -> Vector2:
+func get_facing_direction():
     return Vector2.LEFT if $Sprite.flip_h else Vector2.RIGHT
 
 func _apply_gravity(delta):

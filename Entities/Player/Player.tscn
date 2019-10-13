@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://Entities/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Player/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-00.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-01.png" type="Texture" id=3]
 [ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-02.png" type="Texture" id=4]
@@ -23,8 +23,12 @@
 [ext_resource path="res://Entities/Player/Assets/Fall/adventurer-fall-01.png" type="Texture" id=21]
 [ext_resource path="res://UI/Inventory/Intenvory.tscn" type="PackedScene" id=22]
 [ext_resource path="res://UI/HealthBar/HealthBar.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Entities/Player/PlayerSM.gd" type="Script" id=24]
-[ext_resource path="res://Utils/Health.gd" type="Script" id=25]
+[ext_resource path="res://Entities/Player/Scripts/PlayerSM.gd" type="Script" id=24]
+[ext_resource path="res://Entities/Player/States/Idle.gd" type="Script" id=25]
+[ext_resource path="res://Entities/Player/States/Run.gd" type="Script" id=26]
+[ext_resource path="res://Entities/Player/States/Jump.gd" type="Script" id=27]
+[ext_resource path="res://Entities/Player/States/Fall.gd" type="Script" id=28]
+[ext_resource path="res://Entities/Player/States/Crouch.gd" type="Script" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -59,6 +63,20 @@ extents = Vector2( 7.063, 14.5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+fire_rate = 0.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+smoothing_enabled = true
+editor_draw_limits = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -90,13 +108,27 @@ margin_left = -2.2384
 margin_top = -18.9323
 margin_right = -2.2384
 margin_bottom = -18.9323
-cautious_zone = 0.6
-danger_zone = 0.2
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 24 )
 
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 25 )
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource( 26 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 27 )
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 28 )
+
+[node name="Crouch" type="Node" parent="StateMachine"]
+script = ExtResource( 29 )
+
 [node name="Raycasts" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
 position = Vector2( -3.70865, 18.268 )
@@ -116,29 +148,9 @@ enabled = true
 cast_to = Vector2( 0, 2 )
 collide_with_areas = true
 
-[node name="Health" type="Node2D" parent="."]
-script = ExtResource( 25 )
-max_health = 0
-health = 100
-
 [node name="Label" type="Label" parent="."]
+visible = false
 light_mask = 2
 margin_right = 40.0
 margin_bottom = 14.0
 text = "fdfdfd"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
-current = true
-zoom = Vector2( 0.2, 0.2 )
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
-smoothing_enabled = true
-editor_draw_limits = true
-__meta__ = {
-"_edit_lock_": true
-}
-[connection signal="health_updated" from="." to="HealthBar" method="_set_value"]

@@ -10,11 +10,10 @@ export(int) var damage = 5
 export(bool) var enabled = true
 
 onready var shooting_point = $Turret/ShootingPoint
-var arrow = preload("res://Entities/Arrow/Arrow.tscn")
 onready var shoot_cooldown = Cooldown.new(fire_rate)
 
 func _process(delta):
-	if !Engine.editor_hint:
+	if !Engine.editor_hint && enabled:
 		shoot_cooldown.tick(delta)
 		if shoot_cooldown.is_ready():
 			_shoot_arrow()

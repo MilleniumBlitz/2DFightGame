@@ -18,19 +18,19 @@ func _ready():
 
 func _set_max_health(value):
 	print("oui")
-	$HealthBar.max_value = value
+	health_bar.max_value = value
 	pass
 
 func _set_value(value):
 	health = value
 	
 	if health > cautious_zone:
-		$HealthBar.tint_progress = base_color
+		health_bar.tint_progress = base_color
 	
-	if health < cautious_zone * $HealthBar.max_value:
-		$HealthBar.tint_progress = cautious_zone_color
+	if health < cautious_zone * health_bar.max_value:
+		health_bar.tint_progress = cautious_zone_color
 		
-	if health < danger_zone * $HealthBar.max_value:
-		$HealthBar.tint_progress = danger_zone_color
+	if health < danger_zone * health_bar.max_value:
+		health_bar.tint_progress = danger_zone_color
 	$Label.text = str(health)
-	$HealthBar.value = health
+	health_bar.value = health
