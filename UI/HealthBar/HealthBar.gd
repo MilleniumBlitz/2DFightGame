@@ -2,6 +2,7 @@ extends Control
 
 tool
 class_name HealthBar
+
 var base_color = Color(0,255,0)
 var cautious_zone_color = Color(255,255,0)
 var danger_zone_color = Color(255,0,0)
@@ -12,12 +13,10 @@ var health = 100 setget _set_value
 export(float, 0, 1, 0.1) var cautious_zone = 0.6
 export(float, 0, 1, 0.1) var danger_zone = 0.2
 
-
 func _ready():
 	_set_value(health)
 
 func _set_max_health(value):
-	print("oui")
 	health_bar.max_value = value
 	pass
 
