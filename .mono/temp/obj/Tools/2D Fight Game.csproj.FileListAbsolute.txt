@@ -1,0 +1,5 @@
+D:\Projets Godot\2DFightGame\.mono\temp\bin\Tools\2D Fight Game.dll
+D:\Projets Godot\2DFightGame\.mono\temp\bin\Tools\2D Fight Game.pdb
+D:\Projets Godot\2DFightGame\.mono\temp\obj\Tools\2D Fight Game.csprojAssemblyReference.cache
+D:\Projets Godot\2DFightGame\.mono\temp\obj\Tools\2D Fight Game.dll
+D:\Projets Godot\2DFightGame\.mono\temp\obj\Tools\2D Fight Game.pdb

@@ -9,7 +9,7 @@ var local_shooting_position setget set_local_shooting_position, get_local_shooti
 # const crouch_colision_size = Vector2(10,11)
 # const crouch_colision_position = Vector2(0,7)
 onready var sprite = $Sprite
-onready var anim_player = $AnimationPlayer
+onready var anim_player = $Sprite
 
 var is_crouched = false
 

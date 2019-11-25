@@ -30,6 +30,8 @@ func _enter_tree():
 			
 func _ready():
 	
+	GLOBAL.tilemap = $TileMap
+
 	#Light system
 	var cell_positions = tile_map.get_used_cells()
 	for pos in cell_positions:	

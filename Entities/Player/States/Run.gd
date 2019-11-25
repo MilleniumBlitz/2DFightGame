@@ -1,6 +1,6 @@
 extends "Common.gd"
 
-var player_speed = 200
+var max_speed = 200
 var acceleration = 5
 
 func _enter():
@@ -12,12 +12,20 @@ func _handle_input(event):
 
 func _update(delta):
     update_sprite_direction(null)
+    
+    if owner.motion.x > max_speed:
+        owner.motion.x = max_speed
+    elif owner.motion.x < -max_speed:
+        owner.motion.x = -max_speed
+
     var move_direction = get_input_direction().x
     if move_direction != 0:
-        owner.motion.x = lerp(owner.motion.x, player_speed * move_direction, acceleration * delta)
+        owner.motion.x +=  (max_speed * move_direction *acceleration*delta)
+        # owner.motion.x = player_speed * move_direction
         owner.motion = owner.move_and_slide(owner.motion, owner.UP)
     else:
-        # owner.motion.x = lerp(owner.motion.x, 0, acceleration * delta)
+        owner.motion.x = lerp(owner.motion.x, 0, acceleration * delta)
+        owner.move_and_slide(owner.motion, owner.UP)
         emit_signal("finished", "idle")
 
     

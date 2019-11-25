@@ -14,9 +14,8 @@ var damage_label = preload("res://UI/DamageLabel/DamageLabel.tscn")
 func _is_dead():
 	return health == 0
 
-func _hit(damage):
+func _hit(body, damage):
 	if !_is_dead():
-		
 		#Damage counter
 		var damage_label_instance = damage_label.instance()
 		damage_label_instance.text = "-" + str(damage)

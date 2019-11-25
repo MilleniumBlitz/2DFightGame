@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Levels/Base/BaseLevel.gd" type="Script" id=1]
-[ext_resource path="res://Sprite/Tileset/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Sprite/Tileset/BaseTileset.tres" type="TileSet" id=2]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 1 )
