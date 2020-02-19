@@ -62,9 +62,10 @@ func _set_level_color(value):
 	set_torches_color()
 	
 func set_torches_color():
-	for torche in $Lights.get_children():
-		torche.color = level_color
-		torche.energy = level_brightness
+	if has_node("Lights"):
+		for torche in $Lights.get_children():
+			torche.color = level_color
+			torche.energy = level_brightness
 
 
 

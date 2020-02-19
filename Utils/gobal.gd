@@ -47,6 +47,6 @@ func change_scene(direction):
 	
 func _get_new_arrow(position, damage):
 	var arrow_instance = arrow.instance()
-	arrow_instance.position = position
+	arrow_instance.global_position = position
 	arrow_instance.damage = damage
 	return arrow_instance

@@ -4,7 +4,7 @@ func get_input_direction():
     return get_parent().input_direction
 
 # Returns true if direction changed.
-func update_sprite_direction(direction):
+func update_sprite_direction():
 
 	var last_facing_direction = get_input_direction()
 	if last_facing_direction.x == 1:
@@ -17,4 +17,5 @@ func update_sprite_direction(direction):
 	if (sign(shooting_position.x) == 1 and sign(last_facing_direction.x) == -1) or (sign(shooting_position.x) == -1 and sign(last_facing_direction.x) == 1):
 		owner.local_shooting_position *= -1
     # sprite.offset.x = owner.get_facing_direction().x * abs(sprite.offset.x)
-    # return last_facing_direction != owner.get_facing_direction()
+	# return last_facing_direction != owner.get_facing_direction()
+	

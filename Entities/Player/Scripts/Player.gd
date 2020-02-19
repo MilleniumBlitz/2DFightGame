@@ -30,13 +30,15 @@ func _set_experience(value):
 var object_to_use = null
 
 func get_facing_direction():
-    return Vector2.LEFT if $Sprite.flip_h else Vector2.RIGHT
+	return Vector2.LEFT if $Sprite.flip_h else Vector2.RIGHT
 
 func _apply_gravity(delta):
 	motion.y += GRAVITY * delta
 
 func set_local_shooting_position(value):
+	print($ArrowPoint.global_position)
 	$ArrowPoint.position = value
+	print($ArrowPoint.global_position)
 
 func get_local_shooting_position():
 	return $ArrowPoint.position
@@ -52,8 +54,14 @@ func toggle_inventory():
 	$Intenvory.set_visible(!$Intenvory.is_visible())
 
 func _check_is_grounded():
+
+	#Fonctionne
+	return is_on_floor()
+
+	#Ne fonctionne pas !
 	for raycast in $Raycasts.get_children():
 		if raycast.is_colliding():
+			print(raycast.get_collider())
 			return true
 	return false
 

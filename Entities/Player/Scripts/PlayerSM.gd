@@ -5,14 +5,11 @@ var input_direction
 var can_fire = true
 
 func _ready():
-	# Engine.time_scale = 0.1
-
 	add_state("idle", $Idle)
 	add_state("run", $Run)
 	add_state("jump", $Jump)
 	add_state("fall", $Fall)
 	add_state("crouch", $Crouch)
-	# add_state("dead")
 	call_deferred("new_state", "idle")
 	
 func _input(event):
@@ -27,6 +24,7 @@ func _input(event):
 	#SHOOT
 	if event.is_action_pressed("shoot") && !event.is_echo() and can_fire:
 		can_fire = false
+		print(parent.get_global_shooting_position())
 		var arrow_instance = GLOBAL._get_new_arrow(parent.get_global_shooting_position(), 5)
 		arrow_instance.direction = sign(parent.get_facing_direction().x)
 		get_tree().get_root().add_child(arrow_instance)

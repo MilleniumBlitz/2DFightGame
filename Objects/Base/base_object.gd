@@ -18,8 +18,9 @@ func _on_Area2D_body_entered(body):
 		emit_signal("in_range", self)
 		
 func _on_Area2D_body_exited(body):
-	_on_player_out()
-	emit_signal("out_range")
+	if body.name == "Player":
+		_on_player_out()
+		emit_signal("out_range")
 
 func _on_player_on():
 	pass

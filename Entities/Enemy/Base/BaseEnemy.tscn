@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Entities/Enemy/Base/BaseEnemy.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://UI/HealthBar/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/HealthBar/HealthBar.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 15 )
@@ -18,14 +17,15 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Enemy"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
 
-[node name="HealthBar" parent="Enemy" instance=ExtResource( 3 )]
+[node name="HealthBar" parent="Enemy" instance=ExtResource( 2 )]
 margin_left = -10.0052
 margin_top = -20.7789
 margin_right = -10.0052
 margin_bottom = -20.7789
 cautious_zone = 0.9
 danger_zone = 0.5
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy"]
 [connection signal="health_updated" from="Enemy" to="Enemy/HealthBar" method="_set_value"]
 [connection signal="max_health_updated" from="Enemy" to="Enemy/HealthBar" method="_set_max_health"]
