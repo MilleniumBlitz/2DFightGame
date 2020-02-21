@@ -5,8 +5,6 @@ var acceleration = 8
 func _enter():
 	owner.anim_player.play("Idle")
 
-
-	
 func _update(delta):
 	update_sprite_direction()
 	owner.motion.x = lerp(owner.motion.x, 0, acceleration * delta)
@@ -14,11 +12,11 @@ func _update(delta):
 	
 	if !owner._check_is_grounded():
 		emit_signal("finished", "fall")
-	if get_input_direction().x != 0:
+	if get_input_direction().x != 0 and owner.can_move:
 		emit_signal("finished", "run")
 
 func _handle_input(event):
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("jump") and owner.can_move:
 		emit_signal("finished", "jump")
 	elif event.is_action_pressed("crouch"):
 		emit_signal("finished", "crouch")

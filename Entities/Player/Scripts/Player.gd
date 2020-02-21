@@ -4,6 +4,9 @@ class_name Player
 
 export(float) var fire_rate = 0.4
 
+var can_move = true
+
+var aim_arrow_visible  = false setget set_aim_arrow_visible
 var local_shooting_position setget set_local_shooting_position, get_local_shooting_position
 
 # const crouch_colision_size = Vector2(10,11)
@@ -36,15 +39,17 @@ func _apply_gravity(delta):
 	motion.y += GRAVITY * delta
 
 func set_local_shooting_position(value):
-	print($ArrowPoint.global_position)
 	$ArrowPoint.position = value
-	print($ArrowPoint.global_position)
+	$ArrowPoint.rotation = value.angle()
 
 func get_local_shooting_position():
 	return $ArrowPoint.position
 
 func get_global_shooting_position():
 	return $ArrowPoint.global_position
+
+func set_aim_arrow_visible(value):
+	$ArrowPoint.visible = value
 
 func _kill():
 	$Sprite.modulate = Color(255,1,1)

@@ -13,6 +13,8 @@ func _handle_input(event):
         emit_signal("finished", "jump")
     elif event.is_action_pressed("crouch"):
         emit_signal("finished", "crouch")
+    elif event.is_action_pressed("hold_bow"):
+        emit_signal("finished", "hold")
 
 func _update(delta):
     update_sprite_direction()
