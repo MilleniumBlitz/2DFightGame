@@ -2,12 +2,13 @@ extends "Common.gd"
 
 var acceleration = 8
 
+
 func _enter():
 	owner.anim_player.play("Idle")
 
 func _update(delta):
 	update_sprite_direction()
-	owner.motion.x = lerp(owner.motion.x, 0, acceleration * delta)
+	owner.motion.x = 0
 	owner.motion = owner.move_and_slide(owner.motion, owner.UP)
 	
 	if !owner._check_is_grounded():

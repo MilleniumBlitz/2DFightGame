@@ -11,7 +11,10 @@ export(Color) var level_color setget _set_level_color
 
 onready var tile_map = $TileMap
 
+
+
 func _enter_tree():
+
 
 	if has_node("Light2D"):
 		var light = find_node("Light2D")

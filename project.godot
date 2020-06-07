@@ -108,6 +108,7 @@ gdscript/warnings/unused_argument=false
 
 [display]
 
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [gdnative]

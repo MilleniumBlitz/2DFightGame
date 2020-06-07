@@ -39,17 +39,27 @@ func _apply_gravity(delta):
 	motion.y += GRAVITY * delta
 
 func set_local_shooting_position(value):
+	if (value.x == 0 and value.y == 0):	
+		if get_facing_direction() == Vector2.LEFT:
+			value.x = -20
+		else:
+			value.x = 20
 	$ArrowPoint.position = value
 	$ArrowPoint.rotation = value.angle()
 
 func get_local_shooting_position():
 	return $ArrowPoint.position
 
+func move_toto(position):
+	$Sprite2.position = position
+
 func get_global_shooting_position():
 	return $ArrowPoint.global_position
 
 func set_aim_arrow_visible(value):
+	aim_arrow_visible = value
 	$ArrowPoint.visible = value
+	
 
 func _kill():
 	$Sprite.modulate = Color(255,1,1)
