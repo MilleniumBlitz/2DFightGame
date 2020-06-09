@@ -10,7 +10,8 @@ var tilemap
 
 var start_level = 1
 
-var arrow = preload("res://Entities/Arrow/Arrow.tscn")
+var arrow = preload("res://Entities/Projectile/Arrow/Arrow.tscn")
+var bullet = preload("res://Entities/Projectile/Bullet/Bullet.tscn")
 
 func init_game():
 	
@@ -46,7 +47,10 @@ func change_scene(direction):
 	get_tree().set_current_scene(new_scene)
 	
 func _get_new_arrow(position, damage):
-	var arrow_instance = arrow.instance()
-	arrow_instance.global_position = position
-	arrow_instance.damage = damage
-	return arrow_instance
+	var bullet_instance = bullet.instance()
+	bullet_instance.global_position = position
+	return bullet_instance
+	# var arrow_instance = arrow.instance()
+	# arrow_instance.global_position = position
+	# arrow_instance.damage = damage
+	# return arrow_instance

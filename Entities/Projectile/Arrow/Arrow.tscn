@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Entities/Arrow/Arrow.gd" type="Script" id=1]
-[ext_resource path="res://Entities/Arrow/Assets/arrow.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Projectile/Arrow/Assets/arrow.png" type="Texture" id=1]
+[ext_resource path="res://Entities/Projectile/Arrow/Arrow.gd" type="Script" id=2]
 
 [node name="Arrow" type="Area2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 offset = Vector2( -8, 0 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
@@ -16,4 +16,8 @@ position = Vector2( -29.7495, -6.28044 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -8.36234, 0.276066 )
 polygon = PoolVector2Array( 4.92595, -2.85634, 4.98112, 2.2191, 8.64977, -0.153118 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

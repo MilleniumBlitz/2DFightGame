@@ -5,23 +5,21 @@ export var mass = 15
 var velocity = Vector2(0, 0)
 var toto = 5
 var damage = 1
+var gravity_t = 0
 
-
-const SPEED = 2
+const SPEED = 200
 var direction setget set_direction
 
 func _enter_tree():
+	
 	velocity = direction * SPEED
 
 	var p3 = (position * SPEED)
 	p3.x += 10
 	p3.y -= 10
 	
-	
-	# print(position)
-	# print(position *  SPEED)
-	# print(p3)
-	print(_quadratic_bezier(position, position * SPEED, p3, 0.5))
+func _ready():
+	$Timer.start()
 
 func _quadratic_bezier(p0: Vector2, p1: Vector2, p2: Vector2, t: float):
 	var q0 = p0.linear_interpolate(p1, t)
@@ -30,14 +28,12 @@ func _quadratic_bezier(p0: Vector2, p1: Vector2, p2: Vector2, t: float):
 	return r
 
 func _process(delta):
-	
-	# # Update: delta is also needed here
-	# toto = lerp(toto, 0, 0.1)
-	# velocity += gravity_vec*gravity*mass*delta
-		
-	# position += velocity *delta
 
-	# rotation = velocity.angle()
+	position.y += gravity_t * delta
+	position += direction * SPEED *delta
+
+
+	rotation = velocity.angle()
 	pass
 			
 
@@ -70,6 +66,12 @@ func _on_Arrow_body_entered(body):
 	if body.has_method("_hit"):
 		body._hit(self, damage)
 	# queue_free()
+
+func _on_Timer_timeout():
+	gravity_t = 200
+	print("gravity")
+
+	pass
 
 
 

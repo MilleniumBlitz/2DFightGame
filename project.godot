@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Arrow",
-"language": "GDScript",
-"path": "res://Entities/Arrow/new_script.gd"
-}, {
 "base": "Character",
 "class": "BaseEnemy",
 "language": "GDScript",
@@ -75,7 +70,6 @@ _global_script_classes=[ {
 "path": "res://Utils/Tools.gd"
 } ]
 _global_script_class_icons={
-"Arrow": "",
 "BaseEnemy": "",
 "BaseLevel": "",
 "BaseNPC": "",

@@ -1,6 +1,7 @@
 extends StateMachine
 
 var input_direction
+var deadzone = 0.3
 
 func _ready():
 	add_state("idle", $Idle)
@@ -9,12 +10,6 @@ func _ready():
 	add_state("fall", $Fall)
 	add_state("crouch", $Crouch)
 	call_deferred("new_state", "idle")
-	
-func _quadratic_bezier(p0: Vector2, p1: Vector2, p2: Vector2, t: float):
-		var q0 = p0.linear_interpolate(p1, t)
-		var q1 = p1.linear_interpolate(p2, t)
-		var r = q0.linear_interpolate(q1, t)
-		return r
 
 func _input(event):
 	
@@ -26,34 +21,22 @@ func _input(event):
 			parent.object_to_use._use()
 			
 	if event.is_action_pressed("hold_bow"):
-		owner.can_move = false
-		owner.aim_arrow_visible = true
-
-	if event.is_action_released("hold_bow"):
+		
 		var arrow_instance = GLOBAL._get_new_arrow(owner.get_global_shooting_position(), 5)
 		arrow_instance.direction = owner.local_shooting_position.normalized()
 		get_tree().get_root().add_child(arrow_instance)
 
-		var p1 = owner.local_shooting_position
-		print(p1)
+		# owner.can_move = false
+		# owner.aim_arrow_visible = true
 
-		var p2 = owner.local_shooting_position * 10
-		print(p2)
+	if event.is_action_released("hold_bow"):
 
-		var p3 = p2
-		p3.y += 40
-
-		var t = 0
-		for i in range(10):
-			owner.move_toto(_quadratic_bezier(p1, p2, p3, t))
-			t += 0.1
-
+		# var arrow_instance = GLOBAL._get_new_arrow(owner.get_global_shooting_position(), 5)
+		# arrow_instance.direction = owner.local_shooting_position.normalized()
+		# get_tree().get_root().add_child(arrow_instance)
 
 		owner.aim_arrow_visible = false
 		owner.can_move = true
-
-	var deadzone = 0.3
-	
 
 	#EMPLACEMENT DE LA FLECHE DE VISEE
 	if owner.aim_arrow_visible and event is InputEventJoypadMotion:
