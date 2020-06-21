@@ -2,33 +2,55 @@ extends Character
 
 class_name Player
 
-export(float) var fire_rate = 0.4
+const UP = Vector2(0, -1)
+const GRAVITY = 2300
+const JUMP_HEIGHT = -600
+const ACCELERATION = 8
+const AIR_ACCELERATION = 6
+const DECELERATION = 2
+const MAX_SPEED = 300
 
-var can_move = true
+export(float) var fire_rate = 0.4
+export(float) var attack_rate = 1
+
+onready var sprite = $Sprite
+onready var anim_player = $AnimationPlayer
 
 var aim_arrow_visible  = false setget set_aim_arrow_visible
 var local_shooting_position setget set_local_shooting_position, get_local_shooting_position
 
-# const crouch_colision_size = Vector2(10,11)
-# const crouch_colision_position = Vector2(0,7)
-onready var sprite = $Sprite
-onready var anim_player = $Sprite
-
-var is_crouched = false
-
-var experience = 0 setget _set_experience
-# var level = 1
+onready var shoot_cooldown = Cooldown.new(fire_rate)
+onready var attack_cooldown = Cooldown.new(attack_rate)
 
 var motion = Vector2()
-const UP = Vector2(0, -1)
-const GRAVITY = 2000
-const JUMP_HEIGHT = -600
-const ACCELERATION = 7000
-const SPEED = 170
+var can_move = true
+var is_crouched = false
 
-func _set_experience(value):
-	experience = value
-	$Label.text = str(experience)
+var current_item
+var items = []
+var max_item_count = 9
+
+func _process(delta):
+	shoot_cooldown.tick(delta)
+	attack_cooldown.tick(delta)
+	if Input.is_action_pressed("hold_bow"):
+		
+		if shoot_cooldown.is_ready():
+			var arrow_instance = GLOBAL._get_new_arrow(get_global_shooting_position(), 5)
+			arrow_instance.direction = get_local_shooting_position().normalized()
+			arrow_instance.initial_speed = motion.x
+			# $AudioStreamPlayer2D.play()
+
+			# get_tree().get_root().add_child(arrow_instance)
+
+
+func get_current_item():
+	if current_item:
+		return current_item.object_name
+	return ""
+
+func is_acttack_ready():
+	return attack_cooldown.is_ready()
 
 var object_to_use = null
 
@@ -63,6 +85,8 @@ func set_aim_arrow_visible(value):
 
 func _kill():
 	$Sprite.modulate = Color(255,1,1)
+
+	#ECRAN DE MORT
 	pass
 
 func toggle_inventory():
@@ -81,7 +105,24 @@ func _check_is_grounded():
 	return false
 
 func on_object_in_range(object):
-	object_to_use = object
+	if object.is_in_group("Items"):
+		pick(object)
+	else:
+		object_to_use = object
 	
 func on_object_out_range():
 	object_to_use = null
+
+func pick(item):
+	current_item = item
+	if items.size() < max_item_count:
+		items.append(item)
+		
+		get_tree().get_root().print_tree_pretty()
+		
+
+func _on_Area2D_body_entered(body):
+	
+	#ATTAQUE EPEE
+	if body.has_method("_hit"):
+		body._hit(50)

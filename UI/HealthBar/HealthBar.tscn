@@ -12,9 +12,11 @@ margin_right = -640.0
 margin_bottom = -360.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HealthBar" type="TextureProgress" parent="."]
-visible = false
 margin_right = 20.0
 margin_bottom = 3.0
 step = 5.0
@@ -24,7 +26,6 @@ texture_progress = ExtResource( 4 )
 tint_progress = Color( 0, 255, 0, 1 )
 
 [node name="Label" type="Label" parent="."]
-visible = false
 margin_left = -9.06425
 margin_top = -15.7951
 margin_right = 30.9357

@@ -1,7 +1,7 @@
 extends State
 
 func get_input_direction():
-    return get_parent().input_direction
+	return get_parent().input_direction
 
 # Returns true if direction changed.
 func update_sprite_direction():
@@ -16,4 +16,11 @@ func update_sprite_direction():
 	var shooting_position = owner.local_shooting_position
 	if (sign(shooting_position.x) == 1 and sign(last_facing_direction.x) == -1) or (sign(shooting_position.x) == -1 and sign(last_facing_direction.x) == 1):
 		owner.local_shooting_position *= -1
+
+func _handle_input(event):
+	if event.is_action_pressed("dash"):
+		emit_signal("finished", "dash")
+
+	if event.is_action_pressed("attack") and owner.is_acttack_ready():
+		emit_signal("finished", "attack")
 	

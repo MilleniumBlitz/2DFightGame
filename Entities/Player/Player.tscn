@@ -1,26 +1,7 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Entities/Player/Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-00.png" type="Texture" id=2]
-[ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-01.png" type="Texture" id=3]
-[ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-02.png" type="Texture" id=4]
-[ext_resource path="res://Entities/Player/Assets/Idle/adventurer-idle-03.png" type="Texture" id=5]
-[ext_resource path="res://Entities/Player/Assets/Run/adventurer-run-00.png" type="Texture" id=6]
-[ext_resource path="res://Entities/Player/Assets/Run/adventurer-run-01.png" type="Texture" id=7]
-[ext_resource path="res://Entities/Player/Assets/Run/adventurer-run-02.png" type="Texture" id=8]
-[ext_resource path="res://Entities/Player/Assets/Run/adventurer-run-03.png" type="Texture" id=9]
-[ext_resource path="res://Entities/Player/Assets/Run/adventurer-run-04.png" type="Texture" id=10]
-[ext_resource path="res://Entities/Player/Assets/Run/adventurer-run-05.png" type="Texture" id=11]
-[ext_resource path="res://Entities/Player/Assets/Crouch/adventurer-crouch-00.png" type="Texture" id=12]
-[ext_resource path="res://Entities/Player/Assets/Crouch/adventurer-crouch-01.png" type="Texture" id=13]
-[ext_resource path="res://Entities/Player/Assets/Crouch/adventurer-crouch-02.png" type="Texture" id=14]
-[ext_resource path="res://Entities/Player/Assets/Crouch/adventurer-crouch-03.png" type="Texture" id=15]
-[ext_resource path="res://Entities/Player/Assets/Jump/adventurer-jump-00.png" type="Texture" id=16]
-[ext_resource path="res://Entities/Player/Assets/Jump/adventurer-jump-01.png" type="Texture" id=17]
-[ext_resource path="res://Entities/Player/Assets/Jump/adventurer-jump-02.png" type="Texture" id=18]
-[ext_resource path="res://Entities/Player/Assets/Jump/adventurer-jump-03.png" type="Texture" id=19]
-[ext_resource path="res://Entities/Player/Assets/Fall/adventurer-fall-00.png" type="Texture" id=20]
-[ext_resource path="res://Entities/Player/Assets/Fall/adventurer-fall-01.png" type="Texture" id=21]
+[ext_resource path="res://Entities/Player/Assets/adventurer-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://UI/Inventory/Intenvory.tscn" type="PackedScene" id=22]
 [ext_resource path="res://UI/HealthBar/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Entities/Player/Scripts/PlayerSM.gd" type="Script" id=24]
@@ -29,208 +10,143 @@
 [ext_resource path="res://Entities/Player/States/Jump.gd" type="Script" id=27]
 [ext_resource path="res://Entities/Player/States/Fall.gd" type="Script" id=28]
 [ext_resource path="res://Entities/Player/States/Crouch.gd" type="Script" id=29]
-[ext_resource path="res://icon.png" type="Texture" id=30]
-[ext_resource path="res://Entities/Player/Assets/Aiming/aiming_arrow.png" type="Texture" id=31]
+[ext_resource path="res://Weapons/MP5_SMG-GunGuru-703432894.wav" type="AudioStream" id=32]
+[ext_resource path="res://Entities/Player/States/Dash.gd" type="Script" id=33]
+[ext_resource path="res://Entities/Player/States/Attack.gd" type="Script" id=38]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "Run",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": false,
-"name": "Jump",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "Crouch",
-"speed": 10.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 10.5 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.25839, 14.7245 )
+
 [sub_resource type="Animation" id=3]
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 42, 43, 44, 45, 46, 47 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ArrowPoint/Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=4]
 resource_name = "Crouch"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "Crouch" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Fall"
-length = 0.4
-loop = true
-step = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "Fall" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
+"values": [ 4, 5, 6, 7 ]
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "Idle"
-length = 0.35
+resource_name = "Fall"
+length = 0.2
 loop = true
-step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ "Idle" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 22, 23 ]
 }
 
 [sub_resource type="Animation" id=6]
 length = 0.4
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "Jump" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 38, 39, 40, 41 ]
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "Run"
-length = 0.6
+resource_name = "Jump"
+length = 0.3
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "Run" ]
+"values": [ 14, 15, 16, 17 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
+"values": [ 8, 9, 10, 11, 12, 13 ]
 }
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+fire_rate = 0.1
+attack_rate = 0.5
 
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
-editor_draw_limits = true
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
-animation = "Run"
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 11
+hframes = 7
+frame = 42
+region_rect = Rect2( 160, 194, 32, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.758839, 7.51505 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="ArrowPoint" type="Node2D" parent="."]
@@ -240,9 +156,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="aim_arrow" type="Sprite" parent="ArrowPoint"]
-scale = Vector2( 0.061369, 0.061369 )
-texture = ExtResource( 31 )
+[node name="Area2D" type="Area2D" parent="ArrowPoint"]
+position = Vector2( -20, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArrowPoint/Area2D"]
+position = Vector2( 18.2752, 1.85099 )
+shape = SubResource( 2 )
+disabled = true
 
 [node name="Intenvory" parent="." instance=ExtResource( 22 )]
 visible = false
@@ -274,6 +194,12 @@ script = ExtResource( 28 )
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource( 29 )
 
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource( 33 )
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource( 38 )
+
 [node name="Raycasts" type="Node2D" parent="."]
 position = Vector2( 0.293097, 0.178532 )
 
@@ -298,21 +224,29 @@ enabled = true
 cast_to = Vector2( 0, 20 )
 collide_with_areas = true
 
-[node name="Label" type="Label" parent="."]
-visible = false
-light_mask = 2
-margin_right = 40.0
-margin_bottom = 14.0
-text = "fdfdfd"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Crouch = SubResource( 3 )
-anims/Fall = SubResource( 4 )
-anims/Idle = SubResource( 5 )
-anims/Jump = SubResource( 6 )
-anims/Run = SubResource( 7 )
+autoplay = "Attack"
+anims/Attack = SubResource( 3 )
+anims/Crouch = SubResource( 4 )
+anims/Fall = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+anims/Jump = SubResource( 7 )
+anims/Run = SubResource( 8 )
 
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( -12.787, -5.07623 )
-scale = Vector2( 0.138567, 0.138567 )
-texture = ExtResource( 30 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 32 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 600
+drag_margin_v_enabled = true
+drag_margin_left = 0.6
+drag_margin_top = 0.59
+drag_margin_right = 0.6
+editor_draw_limits = true
+editor_draw_drag_margin = true
+[connection signal="body_entered" from="ArrowPoint/Area2D" to="." method="_on_Area2D_body_entered"]

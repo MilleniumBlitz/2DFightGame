@@ -10,6 +10,3 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="DefaultSpawn" type="Position2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true

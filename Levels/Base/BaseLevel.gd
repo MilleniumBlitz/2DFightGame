@@ -1,7 +1,7 @@
 extends Node
 
 class_name BaseLevel
-
+onready var player = $Player
 
 
 var light_texture = preload("res://Utils/light.png")
@@ -19,8 +19,9 @@ func _enter_tree():
 	if has_node("Light2D"):
 		var light = find_node("Light2D")
 		light.color = level_color
-	add_child(GLOBAL.player)
-	GLOBAL.player.position = $DefaultSpawn.position
+	# add_child(GLOBAL.player)
+	GLOBAL.player = $Player
+	# GLOBAL.player.position = $DefaultSpawn.position
 #	$Player.call_deferred("replace_by", GLOBAL.player)
 #	$Player.replace_by(GLOBAL.player)
 	
@@ -52,9 +53,9 @@ func _ready():
 			$Lights.add_child(light)
 			pass
 	
-	for object in get_tree().get_nodes_in_group("UsableObject"):
-		object.connect("in_range", GLOBAL.player, "on_object_in_range")
-		object.connect("out_range", GLOBAL.player, "on_object_out_range")
+	# for object in get_tree().get_nodes_in_group("UsableObject"):
+	# 	object.connect("in_range", GLOBAL.player, "on_object_in_range")
+	# 	object.connect("out_range", GLOBAL.player, "on_object_out_range")
 		
 func _set_level_brightness(value):
 	level_brightness = value

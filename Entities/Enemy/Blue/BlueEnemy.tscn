@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Entities/Enemy/Base/BaseEnemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Entities/Enemy/Blue/BlueEnemy.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Enemy/Blue/BlueEnemy.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
 
 [node name="BlueEnemy" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 
-[node name="Enemy" parent="." index="0"]
-script = ExtResource( 2 )
-max_health = 100
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
 
-[node name="Sprite" parent="Enemy" index="1"]
-modulate = Color( 0.117647, 0.196078, 0.854902, 1 )
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

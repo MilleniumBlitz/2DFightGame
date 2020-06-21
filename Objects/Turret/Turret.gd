@@ -19,9 +19,9 @@ func _process(delta):
 			_shoot_arrow()
 
 func _shoot_arrow():
-	var arrow_instance = GLOBAL._get_new_arrow(shooting_point.position, damage)
-	arrow_instance.direction = sign(shooting_direction)
-	add_child(arrow_instance)
+	pass
+	#var arrow_instance = GLOBAL._get_new_arrow(shooting_point.get_global_position(), damage)
+	#arrow_instance.direction = Vector2(shooting_direction, 0)
 	
 func _set_shooting_direction(value):
 	shooting_direction = value

@@ -49,6 +49,7 @@ func change_scene(direction):
 func _get_new_arrow(position, damage):
 	var bullet_instance = bullet.instance()
 	bullet_instance.global_position = position
+	get_tree().get_root().add_child(bullet_instance)
 	return bullet_instance
 	# var arrow_instance = arrow.instance()
 	# arrow_instance.global_position = position
