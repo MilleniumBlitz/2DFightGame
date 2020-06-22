@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name BaseObject
 
@@ -13,8 +13,9 @@ func _ready():
 	connect("body_entered", self, "_on_Area2D_body_entered")
 	connect("body_exited", self, "_on_Area2D_body_exited")
 
+
+
 func _on_Area2D_body_entered(body):
-	print("ousdsd")
 	if body.name == GLOBAL.player.name:
 		_on_player_on()
 		emit_signal("in_range", self)

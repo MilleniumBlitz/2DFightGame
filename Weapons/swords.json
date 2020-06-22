@@ -1,0 +1,22 @@
+{
+  "swords": [
+    {
+      "id": "0",
+      "name": "Lame du feu",
+      "color": "#f71707",
+      "damage": 20
+    },
+    {
+      "id": "1",
+      "name": "Lame de glace",
+      "color": "#4287f5",
+      "damage": 30
+    },
+    {
+      "id": "2",
+      "name": "Lame de terre",
+      "color": "#09e026",
+      "damage": 40
+    }
+  ]
+}

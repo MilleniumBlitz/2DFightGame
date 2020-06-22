@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Entities/Enemy/Base/BaseEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/HealthBar/HealthBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/Enemy/Base/EnemySM.gd" type="Script" id=3]
+[ext_resource path="res://Entities/Enemy/Base/States/Dead.gd" type="Script" id=4]
+[ext_resource path="res://Entities/Enemy/Base/States/Idle.gd" type="Script" id=5]
 
 [node name="BaseEnemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -24,5 +27,14 @@ margin_right = -10.0052
 margin_bottom = -20.7789
 cautious_zone = 0.9
 danger_zone = 0.5
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
 [connection signal="health_updated" from="." to="HealthBar" method="_set_value"]
 [connection signal="max_health_updated" from="." to="HealthBar" method="_set_max_health"]

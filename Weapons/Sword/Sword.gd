@@ -1,7 +1,12 @@
-extends BaseObject
+extends Item
 
-func _ready():
-	object_name = "Epee du mal"
+var color setget set_color
+var damage 
 
-func _on_player_on():
-	pass
+func set_color(value):
+	$Sprite.modulate = value
+
+func get_color():
+	return $Sprite.modulate
+
+

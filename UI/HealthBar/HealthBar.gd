@@ -21,7 +21,6 @@ func _set_max_health(value):
 	pass
 
 func _set_value(value):
-	print("oui")
 	health = value
 	
 	if health > cautious_zone:

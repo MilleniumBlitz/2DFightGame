@@ -10,11 +10,14 @@ var tilemap
 
 var start_level = 1
 
+var swords = {}
+
+var sword = preload("res://Weapons/Sword/Sword.tscn")
 var arrow = preload("res://Entities/Projectile/Arrow/Arrow.tscn")
 var bullet = preload("res://Entities/Projectile/Bullet/Bullet.tscn")
 
 func init_game():
-	
+	load_swords()
 	var player_res = preload("res://Entities/Player/Player.tscn")
 	player = player_res.instance()
 	
@@ -55,3 +58,26 @@ func _get_new_arrow(position, damage):
 	# arrow_instance.global_position = position
 	# arrow_instance.damage = damage
 	# return arrow_instance
+
+func get_random_sword():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	print(swords.size())
+	var random = swords[rng.randi_range (0, swords.size()-1)]
+	var sword_instance = sword.instance()
+	sword_instance.item_name = random.name
+	sword_instance.color = random.color
+	sword_instance.damage = random.damage
+	return sword_instance
+	
+
+func load_swords():
+	var data_file = File.new()
+	if data_file.open("res://Weapons/swords.json", File.READ) != OK:
+		return
+	var data_text = data_file.get_as_text()
+	data_file.close()
+	var data_parse = JSON.parse(data_text)
+	if data_parse.error != OK:
+		return
+	swords = data_parse.result["swords"]

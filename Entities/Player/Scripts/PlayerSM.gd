@@ -6,6 +6,7 @@ func _ready():
 	add_state("idle", $Idle)
 	add_state("run", $Run)
 	add_state("jump", $Jump)
+	add_state("doublejump", $DoubleJump)
 	add_state("fall", $Fall)
 	add_state("crouch", $Crouch)
 	add_state("dash", $Dash)

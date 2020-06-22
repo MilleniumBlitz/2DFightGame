@@ -25,10 +25,14 @@ onready var attack_cooldown = Cooldown.new(attack_rate)
 var motion = Vector2()
 var can_move = true
 var is_crouched = false
+var double_jumped = false
 
 var current_item
 var items = []
 var max_item_count = 9
+
+func _ready():
+	current_item = GLOBAL.get_random_sword()
 
 func _process(delta):
 	shoot_cooldown.tick(delta)
@@ -46,7 +50,7 @@ func _process(delta):
 
 func get_current_item():
 	if current_item:
-		return current_item.object_name
+		return current_item.item_name
 	return ""
 
 func is_acttack_ready():
@@ -105,24 +109,26 @@ func _check_is_grounded():
 	return false
 
 func on_object_in_range(object):
-	if object.is_in_group("Items"):
-		pick(object)
-	else:
-		object_to_use = object
-	
+	object_to_use = object
+		
+
 func on_object_out_range():
 	object_to_use = null
 
+func on_item_in_range(item):
+	pick(item)
+
 func pick(item):
-	current_item = item
 	if items.size() < max_item_count:
+		item.picked = true
+		current_item = item
 		items.append(item)
 		
-		get_tree().get_root().print_tree_pretty()
-		
-
 func _on_Area2D_body_entered(body):
 	
 	#ATTAQUE EPEE
 	if body.has_method("_hit"):
-		body._hit(50)
+		if current_item:
+			body._hit(current_item.damage)
+		else:
+			body._hit(50)

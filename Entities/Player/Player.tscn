@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Entities/Player/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Player/Assets/adventurer-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Player/States/DoubleJump.gd" type="Script" id=3]
 [ext_resource path="res://UI/Inventory/Intenvory.tscn" type="PackedScene" id=22]
 [ext_resource path="res://UI/HealthBar/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Entities/Player/Scripts/PlayerSM.gd" type="Script" id=24]
@@ -199,6 +200,9 @@ script = ExtResource( 33 )
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 38 )
+
+[node name="DoubleJump" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
 
 [node name="Raycasts" type="Node2D" parent="."]
 position = Vector2( 0.293097, 0.178532 )

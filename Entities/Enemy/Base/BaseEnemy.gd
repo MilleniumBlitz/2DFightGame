@@ -10,6 +10,9 @@ export(int,0,100,5) var max_health = 100
 
 onready var health = max_health
 
+onready var sprite = $Sprite
+onready var collision_shape = $CollisionShape2D
+
 func _is_dead():
 	return health == 0
 
@@ -19,25 +22,15 @@ func _hit(damage):
 		var damage_label_instance = damage_label.instance()
 		damage_label_instance.text = "-" + str(damage)
 		add_child(damage_label_instance)
-		print("totosdsd")
-		_set_health(health - damage)
+		if health - damage > 0:
+			_set_health(health - damage)
+		else:
+			_set_health(0)
 	pass
-
-func _kill():
-	$CollisionShape2D.set_deferred("disabled", true)
-	$Sprite.set_modulate(Color(1, 1, 255))
-	
-	#LOOT
-	var sword_instance = sword.instance()
-	sword_instance.position = position
-	get_tree().get_root().add_child(sword_instance)
-
 
 func _set_health(value):
 	health = value
 	emit_signal("health_updated", health)
-	if health == 0:
-		_kill()
 		
 
 func _set_max_health(value):

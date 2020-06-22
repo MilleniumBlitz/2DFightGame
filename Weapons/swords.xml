@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<swords>
+	<sword>
+		<id>0</id>
+		<name>Lame du feu</name>
+		<color>#f71707</color>
+	</sword>
+	<sword>
+		<id>1</id>
+		<name>Lame de glace</name>
+		<color>#4287f5</color>
+	</sword>
+	<sword>
+		<id>2</id>
+		<name>Lame de terre</name>
+		<color>#09e026</color>
+	</sword>
+</swords>  
