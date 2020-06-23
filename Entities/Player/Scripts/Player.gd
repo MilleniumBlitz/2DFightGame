@@ -32,8 +32,9 @@ var items = []
 var max_item_count = 9
 
 func _ready():
+	
 	current_item = GLOBAL.get_random_sword()
-
+	items.append(current_item)
 func _process(delta):
 	shoot_cooldown.tick(delta)
 	attack_cooldown.tick(delta)
