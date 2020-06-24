@@ -7,10 +7,10 @@ var item setget set_item
 
 func set_item(value):
 	item = value
-	item.position = Vector2(0,0)
-	item.scale = Vector2(0.5, 0.5)
-	item.rotation = 0.5
-	add_child(item)
+	# item.position = Vector2(0,0)
+	# item.scale = Vector2(0.5, 0.5)
+	# item.rotation = 0.5
+	# add_child(item)
 
 func _on_InventorySpace_mouse_entered():
 	$Sprite.set_texture(mouse_hover)

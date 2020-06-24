@@ -130,7 +130,7 @@ func pick(item):
 		
 		item.picked = true
 		inv_instance.add_item(item)
-		current_item = item
+		# current_item = item
 		items.append(item)
 		
 func _on_Area2D_body_entered(body):

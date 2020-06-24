@@ -17,4 +17,5 @@ func _on_Item_body_entered(body):
 func set_picked(value):
     picked = value
     if picked:
+        $CollisionShape2D.set_deferred("disabled", true)
         get_parent().remove_child(self)
