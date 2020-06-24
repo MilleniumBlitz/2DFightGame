@@ -30,9 +30,15 @@ var double_jumped = false
 var current_item
 var items = []
 var max_item_count = 9
+var inv_instance
+var inventory = preload("res://UI/Inventory/Intenvory.tscn")
 
 func _ready():
 	
+	inv_instance = inventory.instance()
+	inv_instance.visible = false
+	add_child(inv_instance)
+
 	current_item = GLOBAL.get_random_sword()
 	items.append(current_item)
 func _process(delta):
@@ -95,7 +101,7 @@ func _kill():
 	pass
 
 func toggle_inventory():
-	$Intenvory.set_visible(!$Intenvory.is_visible())
+	inv_instance.toggle()
 
 func _check_is_grounded():
 
@@ -121,7 +127,9 @@ func on_item_in_range(item):
 
 func pick(item):
 	if items.size() < max_item_count:
+		
 		item.picked = true
+		inv_instance.add_item(item)
 		current_item = item
 		items.append(item)
 		

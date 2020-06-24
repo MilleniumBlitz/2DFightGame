@@ -1,16 +1,15 @@
 extends Sprite
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var items = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-func _toggle():
+func toggle():
 	set_visible(!visible)
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func add_item(item):
+	items.append(item)
+	var index = items.size() - 1
+	var inventory_space = get_node("InventorySpace" + str(index))
+	print("oui")
+	if inventory_space:
+		inventory_space.item = item
